@@ -5,32 +5,29 @@ using UnityEditor.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    public GameObject Exit1;
+    private float speed = 0.1f;
+    public GameObject Player;
+
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnTriggerEnter(Collider Exit1)
     {
-        print("onCollision");
+        //print("Secret Number = " + MySingleton.secretNumber);
+        //MySingleton.secretNumber = 5;
+        EditorSceneManager.LoadScene("Room1");
+        EditorSceneManager.MoveGameObjectsToScene(Player, Room1);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        print("Secret Number = " + MySingleton.secretNumber);
-        MySingleton.secretNumber = 5;
-        EditorSceneManager.LoadScene("Scene2");
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        print("onTriggerExit");
-
-    }
+    
     // Update is called once per frame
     void Update()
     {
-        
+        this.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, this.Exit1.transform.position, this.speed);
     }
 }
