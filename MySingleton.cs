@@ -5,4 +5,5 @@ using UnityEngine;
 public class MySingleton
 {
     public static int secretNumber = -1;
+    internal static object currentDirection;
 }
